@@ -1,0 +1,91 @@
+[33mcommit 96c1e6823b254c9766e23f6c5fc658ad1e31bbb5[m
+Author: Phigaro <fkrlsp2@naver.com>
+Date:   Sun Jul 9 21:33:07 2017 -0700
+
+    Change the HTML for the site.
+
+[1mdiff --git a/blog/post_list.html b/blog/post_list.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/blog/templates/blog/post_list.html b/blog/templates/blog/post_list.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..740198b[m
+[1m--- /dev/null[m
+[1m+++ b/blog/templates/blog/post_list.html[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32m<html>[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<body>[m
+[32m+[m	[32mFirst page !!![m
+[32m+[m[32m</body>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m</html>[m
+\ No newline at end of file[m
+[1mdiff --git a/blog/urls.py b/blog/urls.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6d4ca17[m
+[1m--- /dev/null[m
+[1m+++ b/blog/urls.py[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m[32m"""mysite URL Configuration[m
+[32m+[m
+[32m+[m[32mThe `urlpatterns` list routes URLs to views. For more information please see:[m
+[32m+[m[32m    https://docs.djangoproject.com/en/1.10/topics/http/urls/[m
+[32m+[m[32mExamples:[m
+[32m+[m[32mFunction views[m
+[32m+[m[32m    1. Add an import:  from my_app import views[m
+[32m+[m[32m    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')[m
+[32m+[m[32mClass-based views[m
+[32m+[m[32m    1. Add an import:  from other_app.views import Home[m
+[32m+[m[32m    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')[m
+[32m+[m[32mIncluding another URLconf[m
+[32m+[m[32m    1. Import the include() function: from django.conf.urls import url, include[m
+[32m+[m[32m    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))[m
+[32m+[m[32m"""[m
+[32m+[m[32mfrom django.conf.urls import url[m
+[32m+[m[32mfrom . import views[m
+[32m+[m
+[32m+[m[32murlpatterns = [[m
+[32m+[m[32m    url(r'^$', views.post_list, name='post_list'),[m
+[32m+[m[32m][m
+[1mdiff --git a/blog/views.py b/blog/views.py[m
+[1mindex 91ea44a..207df97 100644[m
+[1m--- a/blog/views.py[m
+[1m+++ b/blog/views.py[m
+[36m@@ -1,3 +1,6 @@[m
+ from django.shortcuts import render[m
+ [m
+[32m+[m[32mdef post_list(request):[m
+[32m+[m	[32mreturn render(request, 'blog/post_list.html',{})[m
+[32m+[m
+ # Create your views here.[m
+[1mdiff --git a/mysite/urls.py b/mysite/urls.py[m
+[1mindex bc15726..4915a41 100644[m
+[1m--- a/mysite/urls.py[m
+[1m+++ b/mysite/urls.py[m
+[36m@@ -1,21 +1,7 @@[m
+[31m-"""mysite URL Configuration[m
+[31m-[m
+[31m-The `urlpatterns` list routes URLs to views. For more information please see:[m
+[31m-    https://docs.djangoproject.com/en/1.10/topics/http/urls/[m
+[31m-Examples:[m
+[31m-Function views[m
+[31m-    1. Add an import:  from my_app import views[m
+[31m-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')[m
+[31m-Class-based views[m
+[31m-    1. Add an import:  from other_app.views import Home[m
+[31m-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')[m
+[31m-Including another URLconf[m
+[31m-    1. Import the include() function: from django.conf.urls import url, include[m
+[31m-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))[m
+[31m-"""[m
+[31m-from django.conf.urls import url[m
+[32m+[m[32mfrom django.conf.urls import include, url[m
+ from django.contrib import admin[m
+ [m
+ urlpatterns = [[m
+     url(r'^admin/', admin.site.urls),[m
+[31m-][m
+[32m+[m[32m    url(r'', include('blog.urls')),[m
+[32m+[m[32m][m
+\ No newline at end of file[m
